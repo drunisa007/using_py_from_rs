@@ -1,4 +1,6 @@
-use pyo3::prelude::*;
+use std::{fs, path::Path};
+
+use pyo3::{prelude::*, types::PyList};
 //use pyo3::types::IntoPyDict;
 //use pyo3::types::PyTuple;
 
@@ -71,6 +73,17 @@ fn main() -> PyResult<()> {
     // });
 
     // println!("py: {}", from_python?);
-    Ok(())
+    let path = Path::new("/Users/drunisa/python_test/using_py_from_rs/python_app");
+    let py_app = fs::read_to_string(path.join("app.py"))?;
+    let from_python = Python::with_gil(|py| -> PyResult<Py<PyAny>> {
+        let syspath: &PyList = py.import("sys")?.getattr("path")?.downcast()?;
+        syspath.insert(0, &path)?;
+        let app: Py<PyAny> = PyModule::from_code(py, &py_app, "", "")?
+            .getattr("run")?
+            .into();
+        app.call0(py)
+    });
 
+    println!("py: {}", from_python?);
+    Ok(())
 }
