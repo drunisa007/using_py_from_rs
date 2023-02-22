@@ -60,17 +60,17 @@ fn main() -> PyResult<()> {
     //     Ok(())
     // })
 
-    let py_foo = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/python_app/utils/foo.py"));
-    let py_app = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/python_app/app.py"));
-    let from_python = Python::with_gil(|py| -> PyResult<Py<PyAny>> {
-        PyModule::from_code(py, py_foo, "utils.foo", "utils.foo")?;
-        let app: Py<PyAny> = PyModule::from_code(py, py_app, "", "")?
-            .getattr("run")?
-            .into();
-        app.call0(py)
-    });
+    // let py_foo = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/python_app/utils/foo.py"));
+    // let py_app = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/python_app/app.py"));
+    // let from_python = Python::with_gil(|py| -> PyResult<Py<PyAny>> {
+    //     PyModule::from_code(py, py_foo, "utils.foo", "utils.foo")?;
+    //     let app: Py<PyAny> = PyModule::from_code(py, py_app, "", "")?
+    //         .getattr("run")?
+    //         .into();
+    //     app.call0(py)
+    // });
 
-    println!("py: {}", from_python?);
+    // println!("py: {}", from_python?);
     Ok(())
 
 }
