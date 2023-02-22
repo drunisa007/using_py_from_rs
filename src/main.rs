@@ -73,6 +73,7 @@ fn main() -> PyResult<()> {
     // });
 
     // println!("py: {}", from_python?);
+
     let path = Path::new("/Users/drunisa/python_test/using_py_from_rs/python_app");
     let py_app = fs::read_to_string(path.join("app.py"))?;
     let from_python = Python::with_gil(|py| -> PyResult<Py<PyAny>> {
