@@ -1,5 +1,10 @@
 import numpy as np
+import pandas as pd
+
 
 def bar():
-    arr = np.__version__
-    return arr
+    npversion = np.__version__
+    pdversion = pd.__version__
+     
+    return npversion+" "+ pdversion
+
