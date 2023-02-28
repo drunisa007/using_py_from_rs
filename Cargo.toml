@@ -6,7 +6,8 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+pyembed = "0.24.0"
 
-[dependencies.pyo3]
-version = "0.18.1"
-features = ["auto-initialize"]
+# [dependencies.pyo3]
+# version = "0.18.1"
+# features = ["auto-initialize"]
