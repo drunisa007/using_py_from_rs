@@ -1,17 +1,17 @@
 use pyo3::{PyResult, Python, types::PyList};
 
-fn main()-> PyResult<()> {
-    Python::with_gil(|py| {
-        let sys = py.import("sys")?;
-        let path:&PyList = sys.getattr("path")?.extract()?;
-        print!("{:?}",path);
-        path.insert(0, "/path/to/single_file_executable")?;
-        print!("{:?}",path);
-        let my_module = py.import("main")?;
-        let result = my_module.getattr("main")?;
-        println!("{:?}",result.call0());
-        Ok(())
-    })
+fn main(){
+    // Python::with_gil(|py| {
+    //     let sys = py.import("sys")?;
+    //     let path:&PyList = sys.getattr("path")?.extract()?;
+    //     print!("{:?}",path);
+    //     path.insert(0, "/path/to/single_file_executable")?;
+    //     print!("{:?}",path);
+    //     let my_module = py.import("main")?;
+    //     let result = my_module.getattr("main")?;
+    //     println!("{:?}",result.call0());
+    //     Ok(())
+    // })
     // let config = OxidizedPythonInterpreterConfig::default();
 
     // // let current_path =  Path::new("/Users/drunisa/python_test/using_py_from_rs");
